@@ -1,7 +1,8 @@
 FROM ubuntu:trusty
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-		qemu-system \
+		nfs-common \
+        qemu-system \
 		qemu-utils \
 	&& rm -rf /var/lib/apt/lists/*
 
