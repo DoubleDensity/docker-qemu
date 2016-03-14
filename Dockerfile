@@ -9,5 +9,5 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 EXPOSE 22
 EXPOSE 5900
 
-COPY start-qemu /usr/bin/
+COPY start-qemu /usr/local/bin/
 CMD ["start-qemu"]
