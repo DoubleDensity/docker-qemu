@@ -50,7 +50,7 @@ if [ "$QEMU_HDA" ]; then
 	if [ ! -f "$QEMU_HDA" -o ! -s "$QEMU_HDA" ]; then
 		(
 			set -x
-			qemu-img create -f qcow2 -o preallocation=off "$QEMU_HDA" "${QEMU_HDA_SIZE:-8G}"
+			qemu-img create -f qcow2 -o preallocation=off "$QEMU_HDA" "$QEMU_HDA_SIZE"
 		)
 	fi
 	# http://wiki.qemu.org/download/qemu-doc.html#Invocation
@@ -62,7 +62,7 @@ if [ "$QEMU_HDB" ]; then
 	if [ ! -f "$QEMU_HDB" -o ! -s "$QEMU_HDB" ]; then
 		(
 			set -x
-			qemu-img create -f qcow2 -o preallocation=off "$QEMU_HDB" "${QEMU_HDB_SIZE:-8G}"
+			qemu-img create -f qcow2 -o preallocation=off "$QEMU_HDB" "$QEMU_HDB_SIZE"
 		)
 	fi
 	# http://wiki.qemu.org/download/qemu-doc.html#Invocation
