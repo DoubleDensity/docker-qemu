@@ -58,6 +58,18 @@ if [ "$QEMU_HDA" ]; then
 	qemuArgs+=( -drive file="$QEMU_HDA",index=0,media=disk,discard=unmap )
 fi
 
+if [ "$QEMU_HDB" ]; then
+	if [ ! -f "$QEMU_HDB" -o ! -s "$QEMU_HDB" ]; then
+		(
+			set -x
+			qemu-img create -f qcow2 -o preallocation=off "$QEMU_HDB" "${QEMU_HDB_SIZE:-8G}"
+		)
+	fi
+	# http://wiki.qemu.org/download/qemu-doc.html#Invocation
+	#qemuArgs+=( -hdb "$QEMU_HDA" )
+	qemuArgs+=( -drive file="$QEMU_HDB",index=1,media=disk,discard=unmap )
+fi
+
 if [ "$QEMU_CDROM" ]; then
 	qemuArgs+=( -cdrom "$QEMU_CDROM" )
 fi
